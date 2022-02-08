@@ -5,10 +5,11 @@ import (
 	"ambassador/src/models"
 	"context"
 	"fmt"
+	"net/smtp"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/stripe/stripe-go/v72"
 	"github.com/stripe/stripe-go/v72/checkout/session"
-	"net/smtp"
 )
 
 func Orders(c *fiber.Ctx) error {
@@ -115,7 +116,7 @@ func CreateOrder(c *fiber.Ctx) error {
 		})
 	}
 
-	stripe.Key = "sk_test_51H0wSsFHUJ5mamKOVQx6M8kihCIxpBk6DzOhrf4RrpEgqh2bfpI7vbsVu2j5BT0KditccHBnepG33QudcrtBUHfv00Bbw1XXjL"
+	stripe.Key = "TODO add secret key from Stripe"
 
 	params := stripe.CheckoutSessionParams{
 		SuccessURL:         stripe.String("http://localhost:5000/success?source={CHECKOUT_SESSION_ID}"),
